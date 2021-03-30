@@ -22,6 +22,7 @@
                         status = "okay";
                         timebase-frequency = <1000000>;
                         hardware-exec-breakpoint-count = <4>;
+                        sifive,buserror = <&buserror>;
                         hlic: interrupt-controller {
                                 #interrupt-cells = <1>;
                                 compatible = "riscv,cpu-intc";
@@ -199,6 +200,16 @@
                         label = "LD0blue";
                         gpios = <&gpio0 21>;
                         linux,default-trigger = "none";
+                };
+                buserror: bus-error-unit@4000000 {
+                        compatible = "sifive,buserror0";
+                        reg = <0x4000000 0x1000>;
+                        reg-names = "control";
+                };
+                error-device@3000 {
+                        compatible = "sifive,error0";
+                        reg = <0x3000 0x1000>;
+                        reg-names = "control";
                 };
         };
 };
